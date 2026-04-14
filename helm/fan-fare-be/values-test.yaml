@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  registry: ""
+  repository: fan-fare-be/test
+  pullPolicy: Never
+  tag: "test"
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 256Mi
+  limits:
+    cpu: "1"
+    memory: 512Mi
+
+env:
+  existingSecret: ""
+  SPRING_PROFILES_ACTIVE: "test"
+  DB_URL: "jdbc:h2:mem:testdb"
+  DB_USERNAME: "sa"
+  DB_PASSWORD: ""
+  JWT_SECRET_KEY: "test-secret-key-for-kind-deploy"
