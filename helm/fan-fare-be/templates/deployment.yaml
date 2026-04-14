@@ -15,6 +15,10 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "fan-fare-be.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     spec:
       containers:
         - name: {{ include "fan-fare-be.name" . }}

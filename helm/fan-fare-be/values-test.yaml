@@ -17,7 +17,9 @@ resources:
 env:
   existingSecret: ""
   SPRING_PROFILES_ACTIVE: "test"
-  DB_URL: "jdbc:h2:mem:testdb"
-  DB_USERNAME: "sa"
+  DB_HOST: ""
+  DB_PORT: ""
+  DB_NAME: ""
+  DB_USERNAME: ""
   DB_PASSWORD: ""
   JWT_SECRET_KEY: "test-secret-key-for-kind-deploy"

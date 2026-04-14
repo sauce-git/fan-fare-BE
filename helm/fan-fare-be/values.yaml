@@ -30,9 +30,20 @@ readinessProbe:
   initialDelaySeconds: 20
   periodSeconds: 5
 
+podAnnotations: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
 env:
   existingSecret: ""
-  DB_URL: ""
+  DB_HOST: ""
+  DB_PORT: "5432"
+  DB_NAME: ""
   DB_USERNAME: ""
   DB_PASSWORD: ""
   JWT_SECRET_KEY: ""
