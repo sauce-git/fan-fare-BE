@@ -37,6 +37,12 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
+	// Deploy test
+	testImplementation 'org.testcontainers:testcontainers:2.0.4'
+	testImplementation 'org.testcontainers:testcontainers-k3s:2.0.4'
+	testImplementation 'org.apache.commons:commons-lang3:3.17.0'
+	testImplementation 'com.marcnuri.helm-java:helm-java:0.0.15'
+
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
@@ -47,5 +53,15 @@ dependencies {
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+	useJUnitPlatform {
+		excludeTags 'deploy'
+	}
+}
+
+tasks.register('deployTest', Test) {
+	useJUnitPlatform {
+		includeTags 'deploy'
+	}
+	environment 'DOCKER_API_VERSION', '1.44'
+	systemProperty 'docker.api.version', '1.44'
 }
