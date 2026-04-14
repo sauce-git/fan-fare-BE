@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "fan-fare-be.fullname" . }}
+  labels:
+    {{- include "fan-fare-be.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: {{ include "fan-fare-be.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
