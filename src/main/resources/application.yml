@@ -2,7 +2,7 @@ spring:
   application:
     name: fanfare
   datasource:
-    url: ${DB_URL}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
@@ -13,10 +13,10 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-#  logging:
-#    level:
-#      org:
-#        springframework:
-#          security=DEBUG:
+  #  logging:
+  #    level:
+  #      org:
+  #        springframework:
+  #          security=DEBUG:
   jwt:
     secret: ${JWT_SECRET_KEY}
