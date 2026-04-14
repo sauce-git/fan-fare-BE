@@ -30,6 +30,15 @@ readinessProbe:
   initialDelaySeconds: 20
   periodSeconds: 5
 
+podAnnotations: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
 env:
   existingSecret: ""
   DB_HOST: ""
